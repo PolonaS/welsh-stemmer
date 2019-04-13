@@ -1,0 +1,21 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Welsh Stemmer</title>
+    <style>
+      textarea {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="/">
+      {% csrf_token %}
+      <label for="text"></label>
+      <textarea id="text" name="text"></textarea>
+      <input type="submit" value="Stem">
+      <div>{{ result }}</div>
+    </form>
+  </body>
+</html>
