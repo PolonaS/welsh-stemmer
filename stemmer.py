@@ -515,7 +515,7 @@ class PorterStemmer:
         return word
 
 stemmer = PorterStemmer()
-command = 'cat '+sys.argv[1]+' | python3 CyTag/CyTag.py > POStagged.out'
+command = 'python3.7 CyTag/CyTag.py > POStagged.out'
 #print(sys.argv[1])
 os.system(command)
 with open("POStagged.out","r") as f:
@@ -533,4 +533,4 @@ with open("POStagged.out","r") as f:
             stem_output = lemma
         else:
             stem_output = stemmer.stem(lemma,pos,number)
-        print('Token :',token,' ==> Stem: ',stem_output)
+        print('Token :',token,' ==> Stem: ',stem_output,'\n')
