@@ -519,6 +519,7 @@ command = 'python3.7 CyTag/CyTag.py > POStagged.out'
 #print(sys.argv[1])
 os.system(command)
 with open("POStagged.out","r") as f:
+    lines = ""
     for line in f:
         #print('Line: ',line.strip())
         token = line.strip().split("\t")[1].lower()
@@ -533,4 +534,20 @@ with open("POStagged.out","r") as f:
             stem_output = lemma
         else:
             stem_output = stemmer.stem(lemma,pos,number)
-        print('Token :',token,' ==> Stem: ',stem_output,'\n')
+        # print('Token :',token,' ==> Stem: ',stem_output,'\n')
+        lines += """
+        <tr>
+            <td>""" + token + """</td>
+            <td>""" + stem_output + """</td>
+        </tr>
+        """
+
+    print("""
+    <table>
+        <tr>
+            <th>Token</td>
+            <tH>Stem</td>
+        </tr>
+        """ + lines + """
+    </table>
+    """)
