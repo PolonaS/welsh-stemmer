@@ -2,6 +2,8 @@ import sys
 import os
 import argparse
 import re
+import json
+
 
 class PorterStemmer: 
     mapping = {'p':'b','t':'d','c':'g','r':'rh','l':'ll','b':'f','m':'f'}
@@ -518,6 +520,7 @@ stemmer = PorterStemmer()
 command = 'python3.7 CyTag/CyTag.py > POStagged.out'
 #print(sys.argv[1])
 os.system(command)
+obj = []
 with open("POStagged.out","r") as f:
     lines = ""
     for line in f:
@@ -535,19 +538,5 @@ with open("POStagged.out","r") as f:
         else:
             stem_output = stemmer.stem(lemma,pos,number)
         # print('Token :',token,' ==> Stem: ',stem_output,'\n')
-        lines += """
-        <tr>
-            <td>""" + token + """</td>
-            <td>""" + stem_output + """</td>
-        </tr>
-        """
-
-    print("""
-    <table>
-        <tr>
-            <th>Token</td>
-            <tH>Stem</td>
-        </tr>
-        """ + lines + """
-    </table>
-    """)
+        obj.append({'token': token, 'stem': stem_output})
+    print(json.dumps(obj))

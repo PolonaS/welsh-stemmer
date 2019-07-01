@@ -1,5 +1,6 @@
 import os
 from django.shortcuts import render
+import json
 
 
 def index(request):
@@ -7,6 +8,6 @@ def index(request):
     result = ''
     if text != '':
         command = "echo {} | python3.7 stemmer.py 2>&1".format(text.replace(";", "").replace("\r", "").replace("\n", " "))
-        result = os.popen(command).read()
+        result = json.loads(os.popen(command).read())
 
-    return render(request, "index.html", {"result": result})
+    return render(request, "index.html", {"result": result, "text": text})

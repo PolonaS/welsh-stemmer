@@ -13,9 +13,22 @@
     <form method="post" action="/">
       {% csrf_token %}
       <label for="text"></label>
-      <textarea id="text" name="text"></textarea>
+      <textarea id="text" name="text">{{ text }}</textarea>
       <input type="submit" value="Stem">
-      <div>{{ result }}</div>
+      <div>
+        <table>
+          <tr>
+              <th>Token</td>
+              <tH>Stem</td>
+          </tr>
+          {% for i in result %}
+            <tr>
+              <th>{{ i.token }}</td>
+              <tH>{{ i.stem }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
     </form>
   </body>
 </html>
