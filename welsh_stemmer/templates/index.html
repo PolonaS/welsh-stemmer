@@ -16,15 +16,15 @@
       <textarea id="text" name="text">{{ text }}</textarea>
       <input type="submit" value="Stem">
       <div>
-        <table>
+        <table cellspacing="2">
           <tr>
               <th>Token</td>
               <tH>Stem</td>
           </tr>
           {% for i in result %}
             <tr>
-              <th>{{ i.token }}</td>
-              <tH>{{ i.stem }}</td>
+              <td>{{ i.token }}</td>
+              <td>{{ i.stem }}</td>
           </tr>
           {% endfor %}
         </table>
